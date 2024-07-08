@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Generate Barcode and QR Code";
+}
+
+<h2 class="text-center my-4">Generate Barcode and QR Code</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Generate Barcode</h3>
+                    <form asp-action="GenerateBarcode" method="post">
+                        <div class="form-group">
+                            <label for="text">Text to Encode</label>
+                            <input type="text" class="form-control" id="text" name="text" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top:10px">Generate Barcode</button>
+                    </form>
+                    @if (ViewBag.BarcodeImage != null)
+                    {
+                        <h4 class="text-center mt-4">Generated Barcode:</h4>
+                        <div class="text-center">
+                            <img src="data:image/png;base64,@ViewBag.BarcodeImage" class="img-fluid" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Generate QR Code</h3>
+                    <form asp-action="GenerateQRCode" method="post">
+                        <div class="form-group">
+                            <label for="text">Text to Encode</label>
+                            <input type="text" class="form-control" id="text" name="text" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top:10px">Generate QR Code</button>
+                    </form>
+                    @if (ViewBag.QRCodeImage != null)
+                    {
+                        <h4 class="text-center mt-4">Generated QR Code:</h4>
+                        <div class="text-center">
+                            <img src="data:image/png;base64,@ViewBag.QRCodeImage" class="img-fluid" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+    .btn-block {
+        width: 100%;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .my-4 {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+</style>
